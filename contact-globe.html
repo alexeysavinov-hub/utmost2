@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Portfolio studios globe</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/d3@7.9.0/dist/d3.min.js" integrity="sha384-CjloA8y00+1SDAUkjs099PVfnY2KmDC2BZnws9kh8D/lX1s46w6EPhpXdqMfjK6i" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/topojson-client@3.1.0/dist/topojson-client.min.js" integrity="sha384-Ukv1p/xTma6P4/2bY5KzWBw+ydSpXmhCMtyciIQVDJ1RmOxtCYNMF1uXT9T63H67" crossorigin="anonymous"></script>
+<style>
+html,body{margin:0;height:100%;background:#0F1312;overflow:hidden}
+canvas{display:block;width:100%;height:100%;cursor:grab;touch-action:pan-y;-webkit-user-select:none;user-select:none}
+canvas:active{cursor:grabbing}
+</style>
+</head>
+<body>
+<canvas id="globe" aria-hidden="true"></canvas>
+<script>
+(async function () {
+  const canvas = document.getElementById('globe');
+  const ctx = canvas.getContext('2d');
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // Mamboo: Abu Dhabi HQ + Warsaw development hub. Top App Games: Limassol, Cyprus.
+  const places = [
+    { name: 'WARSAW', coord: [21.01, 52.23] },
+    { name: 'LIMASSOL', coord: [33.04, 34.68] },
+    { name: 'ABU DHABI', coord: [54.37, 24.45] },
+  ];
+  const projection = d3.geoOrthographic().clipAngle(90).precision(0.3);
+  const path = d3.geoPath(projection, ctx);
+  const graticule = d3.geoGraticule10();
+  const sphere = { type: 'Sphere' };
+  const tilt = -12, baseLon = -36;
+  const t0 = performance.now();
+  let countries = null, W = 0, H = 0, dpr = 1, lon = baseLon, offset = 0, drag = null, raf = 0, visible = true;
+  const sway = (now) => (reduce ? 0 : Math.sin((now - t0) / 9000) * 16);
+
+  function draw(now) {
+    if (!W || !H) return;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, W, H);
+    projection.rotate([lon, tilt]);
+    ctx.beginPath(); path(sphere); ctx.fillStyle = 'rgba(242,244,243,0.02)'; ctx.fill();
+    ctx.beginPath(); path(graticule); ctx.strokeStyle = 'rgba(242,244,243,0.07)'; ctx.lineWidth = 0.6; ctx.stroke();
+    if (countries) {
+      ctx.beginPath(); path(countries);
+      ctx.fillStyle = 'rgba(242,244,243,0.035)'; ctx.fill();
+      ctx.strokeStyle = 'rgba(242,244,243,0.4)'; ctx.lineWidth = 0.6; ctx.stroke();
+    }
+    ctx.beginPath(); path(sphere); ctx.strokeStyle = 'rgba(242,244,243,0.62)'; ctx.lineWidth = 1; ctx.stroke();
+
+    const center = [-lon, -tilt];
+    const phase = reduce ? 0.35 : ((now - t0) / 1800) % 1;
+    ctx.font = '10px "Geist Mono", ui-monospace, monospace';
+    if ('letterSpacing' in ctx) ctx.letterSpacing = '1px';
+    ctx.textBaseline = 'middle';
+    places.forEach((p, i) => {
+      if (d3.geoDistance(p.coord, center) > Math.PI / 2 - 0.08) return;
+      const xy = projection(p.coord);
+      if (!xy || xy[1] > H * 0.82) return;
+      const x = xy[0], y = xy[1];
+      const ph = (phase + i / places.length) % 1;
+      ctx.beginPath(); ctx.arc(x, y, 3 + ph * 11, 0, Math.PI * 2);
+      ctx.strokeStyle = 'rgba(0,179,132,' + (0.6 * (1 - ph)).toFixed(3) + ')'; ctx.lineWidth = 1; ctx.stroke();
+      ctx.beginPath(); ctx.arc(x, y, 3, 0, Math.PI * 2); ctx.fillStyle = '#00B384'; ctx.fill();
+      const tw = ctx.measureText(p.name).width;
+      const lx = x + 10 + tw > W - 4 ? x - 10 - tw : x + 10;
+      ctx.fillStyle = '#C9D0CC'; ctx.fillText(p.name, lx, y);
+    });
+
+    const g = ctx.createLinearGradient(0, H * 0.45, 0, H);
+    g.addColorStop(0, 'rgba(15,19,18,0)'); g.addColorStop(1, 'rgba(15,19,18,1)');
+    ctx.fillStyle = g; ctx.fillRect(0, H * 0.45, W, H * 0.55 + 1);
+  }
+
+  function resize() {
+    dpr = Math.min(2, window.devicePixelRatio || 1);
+    W = canvas.clientWidth; H = canvas.clientHeight;
+    canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr);
+    const r = Math.max(60, Math.min(W * 0.46, H * 0.92));
+    projection.scale(r).translate([W / 2, r + 14]);
+    draw(performance.now());
+  }
+
+  function frame(now) {
+    raf = 0;
+    if (!drag) lon = baseLon + offset + sway(now);
+    draw(now);
+    if (visible && !reduce) raf = requestAnimationFrame(frame);
+  }
+  function start() { if (!raf && !reduce) raf = requestAnimationFrame(frame); }
+
+  canvas.addEventListener('pointerdown', (e) => { drag = { x: e.clientX, lon: lon }; canvas.setPointerCapture(e.pointerId); });
+  canvas.addEventListener('pointermove', (e) => {
+    if (!drag) return;
+    lon = drag.lon + (e.clientX - drag.x) * 0.4;
+    if (reduce) draw(performance.now());
+  });
+  const end = () => { if (!drag) return; drag = null; offset = lon - baseLon - sway(performance.now()); };
+  canvas.addEventListener('pointerup', end);
+  canvas.addEventListener('pointercancel', end);
+
+  new ResizeObserver(resize).observe(canvas);
+  new IntersectionObserver((entries) => { visible = entries[0].isIntersecting; if (visible) start(); }).observe(canvas);
+  resize();
+  start();
+
+  try {
+    const topo = await fetch('https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/countries-110m.json').then((r) => r.json());
+    countries = topojson.feature(topo, topo.objects.countries);
+  } catch (err) { console.warn('Globe: country data unavailable', err); }
+  try { await document.fonts.load('10px "Geist Mono"'); } catch (err) {}
+  draw(performance.now());
+})();
+</script>
+</body>
+</html>
