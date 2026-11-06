@@ -29,7 +29,7 @@ function Fade({ children, style }) {
 
 function CoverflowCarousel({
   slides = [],
-  rotate = 44,
+  accent = "#00B384", rotate = 44,
   depth = 0.6,
   perspective = 3,
   falloff = 0.56,
@@ -243,7 +243,7 @@ function CoverflowCarousel({
 
       {showCaption && active && active.title && (
         <Fade key={selected} style={{ marginTop: 8, display: "flex", flexDirection: "column", alignItems: "center", padding: "0 24px", textAlign: "center", minHeight: captionMinHeight }}>
-          {active.eyebrow && <span style={{ marginBottom: 10, fontFamily: monoFamily, fontSize: 12, letterSpacing: ".1em", color: "#00B384" }}>{active.eyebrow}</span>}
+          {active.eyebrow && <span style={{ marginBottom: 10, fontFamily: monoFamily, fontSize: 12, letterSpacing: ".1em", color: accent }}>{active.eyebrow}</span>}
           <p style={{ margin: 0, maxWidth: 760, fontSize: 22, fontWeight: 500, letterSpacing: "-.02em", lineHeight: 1.25, textWrap: "balance", color: textColor }}>{active.title}</p>
           {active.subtitle && <p style={{ margin: "6px 0 0", fontSize: 14, color: mutedColor }}>{active.subtitle}</p>}
           {active.description && <p style={{ margin: "12px 0 0", maxWidth: 600, fontSize: 15, lineHeight: 1.55, color: mutedColor, textWrap: "pretty" }}>{active.description}</p>}
@@ -259,7 +259,7 @@ function CoverflowCarousel({
           )}
           {active.href && (
             <a href={active.href} target={/^https?:/.test(active.href) ? "_blank" : undefined} rel={/^https?:/.test(active.href) ? "noreferrer" : undefined}
-              style={{ marginTop: 8, minHeight: 44, display: "inline-flex", alignItems: "center", gap: 8, fontFamily: monoFamily, fontSize: 12, letterSpacing: ".02em", color: "#00B384" }}>
+              style={{ marginTop: 8, minHeight: 44, display: "inline-flex", alignItems: "center", gap: 8, fontFamily: monoFamily, fontSize: 12, letterSpacing: ".02em", color: accent }}>
               {active.linkLabel || "Visit site"} {/^https?:/.test(active.href) ? "↗" : "→"}
             </a>
           )}

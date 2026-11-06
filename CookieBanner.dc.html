@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+@keyframes ck-in{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes ck-out{from{opacity:1;transform:none}to{opacity:0;transform:translateY(12px)}}
+@media (prefers-reduced-motion:reduce){[data-ck]{animation-duration:1ms!important}}
+</style>
+</helmet>
+<sc-if value="{{ open }}" hint-placeholder-val="{{ false }}">
+  <div data-ck="" role="region" aria-label="Cookie consent" style="position:fixed;z-index:210;left:clamp(32px,6vw,96px);right:clamp(32px,6vw,96px);bottom:clamp(12px,2vw,24px);max-width:440px;padding:1px;background:rgba(255,255,255,.14);clip-path:polygon(16px 0,100% 0,100% calc(100% - 16px),calc(100% - 16px) 100%,0 100%,0 16px);animation:{{ anim }}">
+    <div style="display:grid;gap:16px;padding:20px 22px 22px;background:#111614;clip-path:polygon(15.6px 0,100% 0,100% calc(100% - 15.6px),calc(100% - 15.6px) 100%,0 100%,0 15.6px)">
+      <span style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#00B384">Cookies</span>
+      <p style="margin:0;font-size:14px;line-height:1.55;color:#C9D0CC;text-wrap:pretty">We use essential cookies to make this site work. With your consent, we’ll also use analytics cookies to understand how it’s used. <a href="Privacy Policy.dc.html" style="color:#F2F4F3;text-decoration:underline;text-decoration-color:rgba(242,244,243,.3);text-underline-offset:3px;transition:color .2s" style-hover="color:#00B384">Privacy Policy</a></p>
+      <div style="display:flex;flex-wrap:wrap;gap:10px">
+        <button type="button" onClick="{{ accept }}" style="flex:1 1 auto;display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 20px;border:0;background:#00B384;color:#06110D;font-size:14px;font-weight:500;cursor:pointer;clip-path:polygon(9px 0,100% 0,100% calc(100% - 9px),calc(100% - 9px) 100%,0 100%,0 9px);transition:background .3s" style-hover="background:#19C796;color:#06110D">Accept all</button>
+        <button type="button" onClick="{{ decline }}" style="position:relative;flex:1 1 auto;display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 20px;border:0;background:rgba(242,244,243,.3);color:#F2F4F3;font-size:14px;font-weight:500;cursor:pointer;clip-path:polygon(9px 0,100% 0,100% calc(100% - 9px),calc(100% - 9px) 100%,0 100%,0 9px);transition:background .3s" style-hover="background:#00B384;color:#F2F4F3"><span aria-hidden="true" style="position:absolute;inset:1px;background:#111614;clip-path:polygon(8.6px 0,100% 0,100% calc(100% - 8.6px),calc(100% - 8.6px) 100%,0 100%,0 8.6px);pointer-events:none"></span><span style="position:relative">Essential only</span></button>
+      </div>
+    </div>
+  </div>
+</sc-if>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:520,&quot;height&quot;:340}}">
+class Component extends DCLogic {
+  state = { open: false, leaving: false };
+  KEY = 'ug-cookie-consent';
+
+  componentDidMount() {
+    let saved = null;
+    try { saved = JSON.parse(localStorage.getItem(this.KEY) || 'null'); } catch (e) {}
+    window.ugCookieConsent = saved ? saved.value : null;
+    if (!saved) this._t = setTimeout(() => this.setState({ open: true }), 1400);
+    this._onClick = (e) => {
+      const a = e.target.closest && e.target.closest('a[href="#cookie-settings"]');
+      if (!a) return;
+      e.preventDefault();
+      clearTimeout(this._t); clearTimeout(this._t2);
+      this.setState({ open: true, leaving: false });
+    };
+    document.addEventListener('click', this._onClick);
+  }
+
+  componentWillUnmount() {
+    clearTimeout(this._t); clearTimeout(this._t2);
+    document.removeEventListener('click', this._onClick);
+  }
+
+  choose(value) {
+    try { localStorage.setItem(this.KEY, JSON.stringify({ value, ts: Date.now() })); } catch (e) {}
+    window.ugCookieConsent = value;
+    window.dispatchEvent(new CustomEvent('ug:consent', { detail: value }));
+    this.setState({ leaving: true });
+    this._t2 = setTimeout(() => this.setState({ open: false, leaving: false }), 320);
+  }
+
+  renderVals() {
+    return {
+      open: this.state.open,
+      anim: this.state.leaving ? 'ck-out .32s cubic-bezier(.4,0,1,1) both' : 'ck-in .6s cubic-bezier(.16,1,.3,1) both',
+      accept: () => this.choose('all'),
+      decline: () => this.choose('essential'),
+    };
+  }
+}
+</script>
+</body>
+</html>

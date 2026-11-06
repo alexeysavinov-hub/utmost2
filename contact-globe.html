@@ -18,6 +18,9 @@ canvas:active{cursor:grabbing}
 <body>
 <canvas id="globe" aria-hidden="true"></canvas>
 <script>
+const PAL = {"emerald":{"acc":"0,179,132","accHex":"#00B384","ink":"#C9D0CC","line":"242,244,243","fade":"15,19,18"},"gold":{"acc":"201,161,91","accHex":"#C9A15B","ink":"#D1CDC7","line":"244,243,242","fade":"20,18,15"},"violet":{"acc":"141,100,223","accHex":"#8D64DF","ink":"#CFCDD4","line":"244,243,245","fade":"18,17,21"}};
+const P = PAL[new URLSearchParams(location.search).get('accent')] || PAL.emerald;
+document.documentElement.style.background = document.body.style.background = 'rgb(' + P.fade + ')';
 (async function () {
   const canvas = document.getElementById('globe');
   const ctx = canvas.getContext('2d');
@@ -42,14 +45,14 @@ canvas:active{cursor:grabbing}
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     ctx.clearRect(0, 0, W, H);
     projection.rotate([lon, tilt]);
-    ctx.beginPath(); path(sphere); ctx.fillStyle = 'rgba(242,244,243,0.02)'; ctx.fill();
-    ctx.beginPath(); path(graticule); ctx.strokeStyle = 'rgba(242,244,243,0.07)'; ctx.lineWidth = 0.6; ctx.stroke();
+    ctx.beginPath(); path(sphere); ctx.fillStyle = 'rgba(' + P.line + ',0.02)'; ctx.fill();
+    ctx.beginPath(); path(graticule); ctx.strokeStyle = 'rgba(' + P.line + ',0.07)'; ctx.lineWidth = 0.6; ctx.stroke();
     if (countries) {
       ctx.beginPath(); path(countries);
-      ctx.fillStyle = 'rgba(242,244,243,0.035)'; ctx.fill();
-      ctx.strokeStyle = 'rgba(242,244,243,0.4)'; ctx.lineWidth = 0.6; ctx.stroke();
+      ctx.fillStyle = 'rgba(' + P.line + ',0.035)'; ctx.fill();
+      ctx.strokeStyle = 'rgba(' + P.line + ',0.4)'; ctx.lineWidth = 0.6; ctx.stroke();
     }
-    ctx.beginPath(); path(sphere); ctx.strokeStyle = 'rgba(242,244,243,0.62)'; ctx.lineWidth = 1; ctx.stroke();
+    ctx.beginPath(); path(sphere); ctx.strokeStyle = 'rgba(' + P.line + ',0.62)'; ctx.lineWidth = 1; ctx.stroke();
 
     const center = [-lon, -tilt];
     const phase = reduce ? 0.35 : ((now - t0) / 1800) % 1;
@@ -63,15 +66,15 @@ canvas:active{cursor:grabbing}
       const x = xy[0], y = xy[1];
       const ph = (phase + i / places.length) % 1;
       ctx.beginPath(); ctx.arc(x, y, 3 + ph * 11, 0, Math.PI * 2);
-      ctx.strokeStyle = 'rgba(0,179,132,' + (0.6 * (1 - ph)).toFixed(3) + ')'; ctx.lineWidth = 1; ctx.stroke();
-      ctx.beginPath(); ctx.arc(x, y, 3, 0, Math.PI * 2); ctx.fillStyle = '#00B384'; ctx.fill();
+      ctx.strokeStyle = 'rgba(' + P.acc + ',' + (0.6 * (1 - ph)).toFixed(3) + ')'; ctx.lineWidth = 1; ctx.stroke();
+      ctx.beginPath(); ctx.arc(x, y, 3, 0, Math.PI * 2); ctx.fillStyle = P.accHex; ctx.fill();
       const tw = ctx.measureText(p.name).width;
       const lx = x + 10 + tw > W - 4 ? x - 10 - tw : x + 10;
-      ctx.fillStyle = '#C9D0CC'; ctx.fillText(p.name, lx, y);
+      ctx.fillStyle = P.ink; ctx.fillText(p.name, lx, y);
     });
 
     const g = ctx.createLinearGradient(0, H * 0.45, 0, H);
-    g.addColorStop(0, 'rgba(15,19,18,0)'); g.addColorStop(1, 'rgba(15,19,18,1)');
+    g.addColorStop(0, 'rgba(' + P.fade + ',0)'); g.addColorStop(1, 'rgba(' + P.fade + ',1)');
     ctx.fillStyle = g; ctx.fillRect(0, H * 0.45, W, H * 0.55 + 1);
   }
 
