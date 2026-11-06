@@ -91,7 +91,10 @@ body{padding:0 clamp(20px,3.4vw,56px)}
 </sc-if>
 
 <section id="top" data-screen-label="Hero" style="position:relative;min-height:min(100svh,920px);display:flex;align-items:center;overflow:hidden;margin-top:-72px;padding-top:72px;background:#0B0E0D">
-  <sc-if value="{{ heroGem }}" hint-placeholder-val="{{ true }}">
+  <sc-if value="{{ heroDevice }}" hint-placeholder-val="{{ true }}">
+    <img src="assets/concepts/device-hero-ludus-hq5.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:66% 50%;animation:hm-reveal 2.8s cubic-bezier(.22,.61,.36,1) both,hm-push 30s 2.8s ease-in-out infinite alternate">
+  </sc-if>
+  <sc-if value="{{ heroGem }}" hint-placeholder-val="{{ false }}">
     <img src="assets/hero-gem.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:74% 50%;animation:hm-reveal 2.8s cubic-bezier(.22,.61,.36,1) both,hm-push 30s 2.8s ease-in-out infinite alternate">
   </sc-if>
   <sc-if value="{{ heroShards }}" hint-placeholder-val="{{ false }}">
@@ -204,25 +207,25 @@ body{padding:0 clamp(20px,3.4vw,56px)}
     <p data-mission="" style="margin:clamp(24px,3vw,40px) 0 0;max-width:980px;font-size:clamp(22px,2.5vw,34px);font-weight:500;letter-spacing:-.028em;line-height:1.2;color:#F2F4F3;text-wrap:pretty"><span data-mw="">We</span> <span data-mw="">unlock</span> <span data-mw="">boundless</span> <span data-mw="">potential</span> <span data-mw="">and</span> <span data-mw="">ignite</span> <span data-mw="">the</span> <span data-mw="">passion</span> <span data-mw="">of</span> <span data-mw="">gamers</span> <span data-mw="">everywhere.</span> <span data-mw="">Through</span> <span data-mw="">strategic</span> <span data-mw="">investments</span> <span data-mw="">in</span> <span data-mw="">worldwide</span> <span data-mw="">innovative</span> <span data-mw="">gaming</span> <span data-mw="">projects</span><span aria-hidden="true" style="display:inline-block;vertical-align:top;line-height:1;margin:.3em 0 0 .14em;font-family:'Geist Mono',monospace;font-size:max(12px,.26em);font-weight:400;letter-spacing:0;color:#00B384">01</span><span data-mw="">,</span> <span data-mw="">we</span> <span data-mw="">not</span> <span data-mw="">only</span> <span data-mw="">drive</span> <span data-mw="">financial</span> <span data-mw="">success</span><span aria-hidden="true" style="display:inline-block;vertical-align:top;line-height:1;margin:.3em 0 0 .14em;font-family:'Geist Mono',monospace;font-size:max(12px,.26em);font-weight:400;letter-spacing:0;color:#00B384">02</span><span data-mw="">,</span> <span data-mw="">but</span> <span data-mw="">also</span> <span data-mw="">cultivate</span> <span data-mw="">groundbreaking</span> <span data-mw="">experiences</span><span aria-hidden="true" style="display:inline-block;vertical-align:top;line-height:1;margin:.3em 0 0 .14em;font-family:'Geist Mono',monospace;font-size:max(12px,.26em);font-weight:400;letter-spacing:0;color:#00B384">03</span><span data-mw="">.</span></p>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(clamp(calc((100% - 2 * clamp(12px,1.6vw,20px)) / 3 - 1px),calc((720px - 100%) * 999),100%),1fr));gap:clamp(12px,1.6vw,20px);margin-top:clamp(32px,4vw,52px)">
       <div data-reveal="0" style="position:relative;height:clamp(260px,26vw,340px);overflow:hidden;clip-path:polygon(24px 0,100% 0,100% calc(100% - 24px),calc(100% - 24px) 100%,0 100%,0 24px);background:#0F1312">
-        <div style="position:absolute;inset:0;background:url('assets/hero-gem.jpg') 74% 50% / cover;filter:grayscale(1) brightness(.42) contrast(1.15) blur(2px);transform:scale(1.06)"></div>
-        <div style="position:absolute;inset:0;background:linear-gradient(to top,#0B0E0D 8%,rgba(11,14,13,.2) 60%,rgba(11,14,13,.5))"></div>
-        <span style="position:absolute;top:28px;left:28px;width:12px;height:12px;transform:rotate(45deg);border:1px solid #A7AFAB"></span>
-        <span style="position:absolute;top:26px;right:28px;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.1em;color:#6F7975">RAW</span>
+        <div style="position:absolute;inset:0;background:url('assets/concepts/device-seek-ludus.jpg') 50% 25% / cover;filter:saturate(.55) brightness(.62)"></div>
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,#0B0E0D 34%,rgba(11,14,13,.7) 58%,rgba(11,14,13,.2) 82%,rgba(11,14,13,.45))"></div>
+        <span style="position:absolute;top:33px;left:28px;display:flex;gap:4px"><span style="width:14px;height:2px;background:#00B384"></span><span style="width:14px;height:2px;background:rgba(255,255,255,.2)"></span><span style="width:14px;height:2px;background:rgba(255,255,255,.2)"></span></span>
+        <span style="position:absolute;top:26px;right:28px;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.1em;color:#A7AFAB">CONCEPT</span>
         <div style="position:absolute;left:28px;right:28px;bottom:28px;display:grid;gap:12px"><div style="display:flex;gap:12px;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.1em"><span style="color:#00B384">01</span><span style="color:#F2F4F3">SEEK</span></div><p style="margin:0;font-size:15px;line-height:1.55;color:#A7AFAB;text-wrap:pretty">Finding the finest gaming gems: innovative projects worldwide, backed by strategic investment.</p></div>
       </div>
       <div data-reveal="120" style="position:relative;height:clamp(260px,26vw,340px);overflow:hidden;clip-path:polygon(24px 0,100% 0,100% calc(100% - 24px),calc(100% - 24px) 100%,0 100%,0 24px);background:#0F1312">
-        <div style="position:absolute;inset:0;background:url('assets/hero-gem.jpg') 74% 50% / cover;filter:grayscale(.55) brightness(.62) contrast(1.1)"></div>
-        <div style="position:absolute;inset:0;background:linear-gradient(to top,#0B0E0D 8%,rgba(11,14,13,.15) 60%,rgba(11,14,13,.45))"></div>
-        <span style="position:absolute;top:28px;left:28px;width:12px;height:12px;transform:rotate(45deg);border:1px solid #00B384;background:linear-gradient(135deg,rgba(0,179,132,0) 50%,rgba(0,179,132,.75) 50%)"></span>
-        <span style="position:absolute;top:26px;right:28px;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.1em;color:#A7AFAB">CUT</span>
+        <div style="position:absolute;inset:0;background:url('assets/concepts/device-craft-dreadmoor.jpg') 50% 25% / cover;filter:saturate(.8) brightness(.72)"></div>
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,#0B0E0D 34%,rgba(11,14,13,.7) 58%,rgba(11,14,13,.2) 82%,rgba(11,14,13,.45))"></div>
+        <span style="position:absolute;top:33px;left:28px;display:flex;gap:4px"><span style="width:14px;height:2px;background:#00B384"></span><span style="width:14px;height:2px;background:#00B384"></span><span style="width:14px;height:2px;background:rgba(255,255,255,.2)"></span></span>
+        <span style="position:absolute;top:26px;right:28px;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.1em;color:#A7AFAB">BUILD</span>
         <div style="position:absolute;left:28px;right:28px;bottom:28px;display:grid;gap:12px"><div style="display:flex;gap:12px;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.1em"><span style="color:#00B384">02</span><span style="color:#F2F4F3">CRAFT</span></div><p style="margin:0;font-size:15px;line-height:1.55;color:#A7AFAB;text-wrap:pretty">Expert marketing, management and investment that turn potential into financial success.</p></div>
       </div>
       <div data-reveal="240" style="position:relative;height:clamp(260px,26vw,340px);padding:1px;clip-path:polygon(24px 0,100% 0,100% calc(100% - 24px),calc(100% - 24px) 100%,0 100%,0 24px);background:linear-gradient(160deg,rgba(0,179,132,.9),rgba(0,179,132,.15) 60%)">
         <div style="position:relative;width:100%;height:100%;overflow:hidden;clip-path:polygon(23.6px 0,100% 0,100% calc(100% - 23.6px),calc(100% - 23.6px) 100%,0 100%,0 23.6px);background:#0F1312">
-          <div style="position:absolute;inset:0;background:url('assets/hero-gem.jpg') 74% 50% / cover;filter:saturate(1.2) brightness(1.05)"></div>
-          <div style="position:absolute;inset:0;background:radial-gradient(60% 45% at 60% 40%,rgba(0,179,132,.25),rgba(0,179,132,0)),linear-gradient(to top,#0B0E0D 8%,rgba(11,14,13,.1) 60%,rgba(11,14,13,.35))"></div>
-          <span style="position:absolute;top:27px;left:27px;width:12px;height:12px;transform:rotate(45deg);background:#00B384;box-shadow:0 0 0 4px rgba(0,179,132,.14),0 0 24px rgba(0,179,132,.6)"></span>
-          <span style="position:absolute;top:25px;right:27px;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.1em;color:#00B384">POLISHED</span>
+          <div style="position:absolute;inset:0;background:url('assets/concepts/device-cultivate-collage.jpg') 50% 25% / cover;filter:saturate(1.05) brightness(.78)"></div>
+          <div style="position:absolute;inset:0;background:radial-gradient(60% 45% at 60% 30%,rgba(0,179,132,.22),rgba(0,179,132,0)),linear-gradient(to top,#0B0E0D 34%,rgba(11,14,13,.7) 58%,rgba(11,14,13,.2) 82%,rgba(11,14,13,.45))"></div>
+          <span style="position:absolute;top:32px;left:27px;display:flex;gap:4px"><span style="width:14px;height:2px;background:#00B384"></span><span style="width:14px;height:2px;background:#00B384"></span><span style="width:14px;height:2px;background:#00B384;box-shadow:0 0 10px rgba(0,179,132,.8)"></span></span>
+          <span style="position:absolute;top:25px;right:27px;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.1em;color:#00B384">LAUNCH</span>
           <div style="position:absolute;left:27px;right:27px;bottom:27px;display:grid;gap:12px"><div style="display:flex;gap:12px;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.1em"><span style="color:#00B384">03</span><span style="color:#F2F4F3">CULTIVATE</span></div><p style="margin:0;font-size:15px;line-height:1.55;color:#C9D0CC;text-wrap:pretty">Groundbreaking experiences that ignite the passion of gamers everywhere.</p></div>
         </div>
       </div>
@@ -377,7 +380,7 @@ body{padding:0 clamp(20px,3.4vw,56px)}
   </div>
 </footer>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;heroVisual&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;gem&quot;,&quot;options&quot;:[&quot;gem&quot;,&quot;shards&quot;],&quot;tsType&quot;:&quot;'gem' | 'shards'&quot;,&quot;section&quot;:&quot;Hero&quot;},&quot;frame&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;glow&quot;,&quot;options&quot;:[&quot;line&quot;,&quot;glow&quot;,&quot;ruler&quot;,&quot;progress&quot;,&quot;cut&quot;,&quot;graphite&quot;],&quot;tsType&quot;:&quot;'line' | 'glow' | 'ruler' | 'progress' | 'cut' | 'graphite'&quot;},&quot;tileBg&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;light&quot;,&quot;options&quot;:[&quot;light&quot;,&quot;facet&quot;,&quot;tone&quot;],&quot;tsType&quot;:&quot;'light' | 'facet' | 'tone'&quot;,&quot;section&quot;:&quot;Portfolio&quot;},&quot;tileLight&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;brand&quot;,&quot;options&quot;:[&quot;brand&quot;,&quot;emerald&quot;],&quot;tsType&quot;:&quot;'brand' | 'emerald'&quot;,&quot;section&quot;:&quot;Portfolio&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;heroVisual&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;device&quot;,&quot;options&quot;:[&quot;device&quot;,&quot;gem&quot;,&quot;shards&quot;],&quot;tsType&quot;:&quot;'gem' | 'shards'&quot;,&quot;section&quot;:&quot;Hero&quot;},&quot;frame&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;glow&quot;,&quot;options&quot;:[&quot;line&quot;,&quot;glow&quot;,&quot;ruler&quot;,&quot;progress&quot;,&quot;cut&quot;,&quot;graphite&quot;],&quot;tsType&quot;:&quot;'line' | 'glow' | 'ruler' | 'progress' | 'cut' | 'graphite'&quot;},&quot;tileBg&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;light&quot;,&quot;options&quot;:[&quot;light&quot;,&quot;facet&quot;,&quot;tone&quot;],&quot;tsType&quot;:&quot;'light' | 'facet' | 'tone'&quot;,&quot;section&quot;:&quot;Portfolio&quot;},&quot;tileLight&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;brand&quot;,&quot;options&quot;:[&quot;brand&quot;,&quot;emerald&quot;],&quot;tsType&quot;:&quot;'brand' | 'emerald'&quot;,&quot;section&quot;:&quot;Portfolio&quot;}}">
 class Component extends DCLogic {
   shardsRef = (el) => { if (el && !el.getAttribute('src')) el.src = 'assets/hero-shards.jpg'; };
   state = { allNews: false, sent: false, errors: {}, menuOpen: false,
@@ -657,7 +660,7 @@ class Component extends DCLogic {
   };
 
   renderVals() {
-    const heroVisual = this.props.heroVisual ?? 'gem';
+    const heroVisual = this.props.heroVisual ?? 'device';
     const narrow = this.state.narrow;
     const open = narrow && this.state.menuOpen;
     const topic = this.state.topic;
@@ -676,6 +679,7 @@ class Component extends DCLogic {
       frameProgress: !narrow && f === 'progress',
       frameCut: !narrow && f === 'cut',
       frameGraphite: !narrow && f === 'graphite',
+      heroDevice: heroVisual === 'device',
       heroGem: heroVisual === 'gem',
       heroShards: heroVisual === 'shards',
       shardsRef: this.shardsRef,
