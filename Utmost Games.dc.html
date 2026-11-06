@@ -139,7 +139,7 @@ body{padding:0 clamp(20px,3.4vw,56px)}
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(clamp(calc((100% - 2 * clamp(12px,1.6vw,20px)) / 3 - 1px),calc((800px - 100%) * 999),100%),1fr));gap:clamp(12px,1.6vw,20px)">
     <sc-for list="{{ portfolio }}" as="p" hint-placeholder-count="3">
       <div data-reveal="{{ p.delay }}" style="display:grid;min-width:0">
-        <a href="{{ p.href }}" target="_blank" rel="noreferrer" onMouseEnter="{{ btnIn }}" onMouseLeave="{{ btnOut }}" onFocus="{{ btnIn }}" onBlur="{{ btnOut }}" style="display:block;min-width:0;padding:1px;background:rgba(255,255,255,.1);color:#F2F4F3;clip-path:polygon(24px 0,100% 0,100% calc(100% - 24px),calc(100% - 24px) 100%,0 100%,0 24px);transition:background .4s" style-hover="background:rgba(0,179,132,.65);color:#F2F4F3">
+        <a href="{{ p.href }}" target="_blank" rel="noreferrer" onMouseEnter="{{ cardIn }}" onMouseLeave="{{ cardOut }}" onFocus="{{ cardIn }}" onBlur="{{ cardOut }}" style="display:block;min-width:0;padding:1px;background:rgba(255,255,255,.1);color:#F2F4F3;clip-path:polygon(24px 0,100% 0,100% calc(100% - 24px),calc(100% - 24px) 100%,0 100%,0 24px);transition:background .4s" style-hover="background:rgba(0,179,132,.65);color:#F2F4F3">
           <div style="height:100%;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));grid-template-rows:auto 1fr;background:#111614;clip-path:polygon(23.6px 0,100% 0,100% calc(100% - 23.6px),calc(100% - 23.6px) 100%,0 100%,0 23.6px)">
             <div style="position:relative;aspect-ratio:5 / 4;overflow:hidden;background:#0C100F;color:{{ p.rgb }}">
               <sc-if value="{{ bgLight }}" hint-placeholder-val="{{ true }}">
@@ -155,7 +155,8 @@ body{padding:0 clamp(20px,3.4vw,56px)}
               </sc-if>
               <span aria-hidden="true" data-on="opacity:.42;transform:scale(1.12)" style="position:absolute;inset:0;background:radial-gradient(38% 34% at 50% 54%,currentColor,transparent 100%);opacity:.24;transition:opacity .6s,transform .9s cubic-bezier(.16,1,.3,1)"></span>
               <span aria-hidden="true" data-on="opacity:1" style="position:absolute;inset:0;opacity:0;transition:opacity .8s;pointer-events:none"><span data-pf-anim="" style="position:absolute;inset:0;background:radial-gradient(34% 30% at 50% 54%,currentColor,transparent 100%);opacity:.2;animation:pf-drift 4s ease-in-out infinite alternate;animation-delay:{{ p.glowDelay }}"></span><img src="{{ p.logo }}" alt="" data-pf-anim="" data-on="transform:translate(-50%,-50%) scale(1.05)" style="position:absolute;left:50%;top:54%;width:{{ p.logoW }};height:auto;transform:translate(-50%,-50%);filter:blur(16px) brightness(1.5) saturate(1.3);opacity:.18;animation:pf-bloom 2.6s ease-in-out infinite alternate;animation-delay:{{ p.glowDelay }};transition:transform .9s cubic-bezier(.16,1,.3,1)"></span>
-              <img src="{{ p.logo }}" alt="{{ p.name }}" loading="lazy" data-on="transform:translate(-50%,-50%) scale(1.05)" style="position:absolute;left:50%;top:54%;width:{{ p.logoW }};height:auto;transform:translate(-50%,-50%);filter:drop-shadow(0 12px 28px rgba(0,0,0,.55));transition:transform .9s cubic-bezier(.16,1,.3,1)">
+              <img src="{{ p.logo }}" alt="{{ p.name }}" loading="lazy" data-logo="" data-on="transform:translate(-50%,-50%) scale(1.05)" style="position:absolute;left:50%;top:54%;width:{{ p.logoW }};height:auto;transform:translate(-50%,-50%);filter:drop-shadow(0 12px 28px rgba(0,0,0,.55));transition:transform .9s cubic-bezier(.16,1,.3,1)">
+              <canvas data-sparkle="" data-fx="{{ p.fx }}" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;mix-blend-mode:screen"></canvas>
             </div>
             <div style="min-width:0;display:flex;flex-direction:column;gap:20px;padding:clamp(20px,2vw,28px)">
               <div style="display:grid;gap:6px">
@@ -252,8 +253,7 @@ body{padding:0 clamp(20px,3.4vw,56px)}
     <h2 data-reveal="0" style="margin:0 0 clamp(28px,3.5vw,48px);font-size:clamp(36px,4.4vw,60px);font-weight:500;letter-spacing:-.035em;line-height:1">Leadership</h2>
     <div style="display:flex;flex-wrap:wrap;gap:clamp(28px,4vw,56px)">
       <div data-reveal="0" style="position:relative;flex:1 1 300px;max-width:380px;aspect-ratio:4/5;overflow:hidden;border-radius:2px;background:#0F1312">
-        <image-slot id="founder-photo" shape="rect" src="assets/founder-nikolsky-v3.jpg" placeholder="Drop a portrait of Vladimir Nikolsky" style="position:absolute;inset:0;width:100%;height:100%"></image-slot>
-        <div aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(to top,#0B0E0D 0%,rgba(11,14,13,.55) 14%,rgba(11,14,13,0) 36%),radial-gradient(130% 100% at 50% 32%,rgba(11,14,13,0) 58%,rgba(11,14,13,.5) 100%)"></div>
+        <image-slot id="founder-photo" shape="rect" src="assets/founder-nikolsky-v8.jpg" placeholder="Drop a portrait of Vladimir Nikolsky" style="position:absolute;inset:0;width:100%;height:100%"></image-slot>
       </div>
       <div data-reveal="100" style="flex:1.4 1 420px;min-width:0;display:flex;flex-direction:column;justify-content:space-between;gap:28px">
         <div>
@@ -450,7 +450,7 @@ class Component extends DCLogic {
   ];
 
   portfolio = [
-    { delay: '0', tag: '01 · STUDIO', name: 'Top App Games', subtitle: 'Mobile game studio', domain: 'topapp.games', href: 'https://www.topapp.games/', logo: 'assets/logo/partners/topapp.png', logoW: '33%', brand: 'rgb(255,190,70)', glowDelay: '-2.7s',
+    { delay: '0', tag: '01 · STUDIO', name: 'Top App Games', subtitle: 'Mobile game studio', domain: 'topapp.games', href: 'https://www.topapp.games/', logo: 'assets/logo/partners/topapp.png', logoW: '33%', brand: 'rgb(255,190,70)', fx: 'fire', glowDelay: '-2.7s',
       stats: [{ value: '12M+', label: 'PLAYERS' }, { value: 'Ludus', label: 'FLAGSHIP GAME' }] },
     { delay: '100', tag: '02 · PUBLISHER', name: 'Digital Vortex', subtitle: 'Independent game publisher', domain: 'vortex.game', href: 'https://vortex.game/', logo: 'assets/logo/partners/vortex.png', logoW: '58%', brand: 'rgb(56,168,150)', glowDelay: '-5.3s',
       stats: [{ value: 'PC & console', label: 'PLATFORMS' }, { value: '2024', label: 'LAUNCHED' }] },
@@ -630,6 +630,154 @@ class Component extends DCLogic {
     if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 96, behavior: 'smooth' });
   };
 
+  cardIn = (e) => {
+    this.btnIn(e);
+    const cv = e.currentTarget.querySelector('canvas[data-sparkle]');
+    if (!cv || (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)) return;
+    const area = cv.parentElement, r = area.getBoundingClientRect(), dpr = Math.min(2, window.devicePixelRatio || 1);
+    const st = cv._st || (cv._st = { parts: [], raf: 0, acc: 0 });
+    cv.width = Math.round(r.width * dpr); cv.height = Math.round(r.height * dpr);
+    Object.assign(st, { w: r.width, h: r.height, dpr, on: true, t0: performance.now(), flash: 1, logo: area.querySelector('img[data-logo]'), fx: cv.getAttribute('data-fx') || 'spark', heat: Math.max(0, st.heat || 0) });
+    st.rgb = (getComputedStyle(area).color.match(/[\d.]+/g) || [0, 179, 132]).slice(0, 3).map(Number).join(',');
+    this._sparkRect(st, area);
+    for (let i = 0; i < (st.fx === 'fire' ? 90 : 56); i++) this._sparkAdd(st, true);
+    clearTimeout(st.auto);
+    if (window.matchMedia && window.matchMedia('(hover: none)').matches) st.auto = setTimeout(() => { st.on = false; }, 1400);
+    if (!st.raf || performance.now() - st.last > 250) { cancelAnimationFrame(st.raf); st.last = performance.now(); st.raf = requestAnimationFrame((t) => this._sparkTick(cv, t)); }
+  };
+
+  cardOut = (e) => {
+    this.btnOut(e);
+    const cv = e.currentTarget.querySelector('canvas[data-sparkle]');
+    if (cv && cv._st) cv._st.on = false;
+  };
+
+  _sparkRect(st, area) {
+    if (!st.logo) { st.lx = st.w * 0.25; st.ly = st.h * 0.35; st.lw = st.w * 0.5; st.lh = st.h * 0.38; return; }
+    const a = area.getBoundingClientRect(), l = st.logo.getBoundingClientRect();
+    st.lx = l.left - a.left; st.ly = l.top - a.top; st.lw = l.width; st.lh = l.height;
+  }
+
+  _sparkAdd(st, burst) {
+    const cx = st.lx + st.lw / 2, cy = st.ly + st.lh / 2, R = Math.random;
+    if (st.fx === 'fire' && R() < 0.6) {
+      let x, y, vx, vy;
+      if (burst) { const a = -Math.PI / 2 + (R() - 0.5) * 2.6, sp = 120 + R() * 300; x = cx + (R() - 0.5) * st.lw * 0.7; y = cy + (R() - 0.2) * st.lh * 0.6; vx = Math.cos(a) * sp; vy = Math.sin(a) * sp; }
+      else { x = st.lx + (R() * 1.2 - 0.1) * st.lw; y = st.ly + st.lh * (0.45 + R() * 0.65); vx = (R() - 0.5) * 50; vy = -60 - R() * 140; }
+      st.parts.push({ x, y, vx, vy, kind: 2, age: 0, life: 0.6 + R() * 1.1, size: 1.2 + R() * 2.6, tw: R() * 6.28 });
+      return;
+    }
+    const kind = R() < (burst ? 0.4 : 0.24) ? 1 : 0;
+    let x, y, vx, vy;
+    if (burst) {
+      const a = R() * Math.PI * 2, sp = 80 + R() * 260;
+      x = cx + (R() - 0.5) * st.lw * 0.6; y = cy + (R() - 0.5) * st.lh * 0.6;
+      vx = Math.cos(a) * sp; vy = Math.sin(a) * sp * 0.75 - 50;
+    } else {
+      x = st.lx + (R() * 1.3 - 0.15) * st.lw; y = st.ly + (R() * 1.5 - 0.25) * st.lh;
+      vx = (R() - 0.5) * 30; vy = -24 - R() * 60;
+    }
+    st.parts.push({ x, y, vx, vy, kind, age: 0, life: kind ? 0.45 + R() * 0.7 : 0.8 + R() * 1.4, size: kind ? 6 + R() * (burst ? 16 : 12) : 0.8 + R() * 2, rot: R() * Math.PI, tw: R() * 6.28, white: R() < 0.55 });
+  }
+
+  _fireSprites() {
+    if (this._fs) return this._fs;
+    const stops = [[255, 250, 210], [255, 220, 120], [255, 160, 40], [240, 90, 20], [170, 40, 10]], out = [];
+    for (let i = 0; i < 16; i++) {
+      const t = (i / 15) * (stops.length - 1), k = Math.min(stops.length - 2, Math.floor(t)), f = t - k;
+      const c = stops[k].map((v, j) => Math.round(v + (stops[k + 1][j] - v) * f)).join(',');
+      const cv = document.createElement('canvas'); cv.width = cv.height = 64; const x = cv.getContext('2d');
+      const g = x.createRadialGradient(32, 32, 0, 32, 32, 32);
+      g.addColorStop(0, 'rgba(255,255,240,1)'); g.addColorStop(0.12, 'rgba(' + c + ',1)'); g.addColorStop(0.4, 'rgba(' + c + ',.35)'); g.addColorStop(1, 'rgba(' + c + ',0)');
+      x.fillStyle = g; x.fillRect(0, 0, 64, 64); out.push(cv);
+    }
+    return (this._fs = out);
+  }
+
+  _sparkTick(cv, now) {
+    const st = cv._st;
+    try { this._sparkFrame(cv, now); } catch (err) {
+      if (!st.warned) { st.warned = true; console.warn('sparkle', err); }
+      st.parts = []; st.raf = st.on ? requestAnimationFrame((t) => this._sparkTick(cv, t)) : 0;
+    }
+  }
+
+  _sparkFrame(cv, now) {
+    const st = cv._st, ctx = cv.getContext('2d');
+    const dt = Math.max(0, Math.min(0.05, (now - st.last) / 1000)); st.last = Math.max(st.last, now);
+    if (st.on) { st.acc += dt * (st.fx === 'fire' ? 150 : 90); while (st.acc >= 1) { st.acc -= 1; this._sparkAdd(st, false); } }
+    ctx.setTransform(st.dpr, 0, 0, st.dpr, 0, 0);
+    ctx.clearRect(0, 0, st.w, st.h);
+    ctx.globalCompositeOperation = 'lighter';
+    const cx = st.lx + st.lw / 2, cy = st.ly + st.lh / 2, rgb = st.rgb;
+    if (st.fx === 'fire') {
+      st.heat = Math.max(0, Math.min(1, st.heat + ((st.on ? 1 : 0) - st.heat) * Math.min(1, dt * (st.on ? 5 : 2.5))));
+      if (st.heat > 0.01) {
+        const fl = 0.75 + 0.25 * Math.sin(now / 70) * Math.sin(now / 113 + 1.3), hy = st.ly + st.lh * 0.85, hr = st.lw * 1.05;
+        const hg = ctx.createRadialGradient(cx, hy, 0, cx, hy, hr);
+        hg.addColorStop(0, 'rgba(255,170,60,' + (0.42 * st.heat * fl).toFixed(3) + ')'); hg.addColorStop(0.45, 'rgba(255,90,20,' + (0.2 * st.heat * fl).toFixed(3) + ')'); hg.addColorStop(1, 'rgba(255,60,10,0)');
+        ctx.fillStyle = hg; ctx.fillRect(0, 0, st.w, st.h);
+      }
+    }
+    if (st.flash > 0) {
+      st.flash = Math.max(0, st.flash - dt * 1.5);
+      const f = st.flash, rad = 8 + (1 - f) * Math.max(st.w, st.h) * 0.6;
+      const g = ctx.createRadialGradient(cx, cy, rad * 0.55, cx, cy, rad);
+      g.addColorStop(0, 'rgba(' + rgb + ',0)'); g.addColorStop(0.82, 'rgba(' + rgb + ',' + (0.5 * f).toFixed(3) + ')'); g.addColorStop(1, 'rgba(' + rgb + ',0)');
+      ctx.fillStyle = g; ctx.beginPath(); ctx.arc(cx, cy, rad, 0, 6.2832); ctx.fill();
+      const c = ctx.createRadialGradient(cx, cy, 0, cx, cy, st.lw * 0.7);
+      c.addColorStop(0, 'rgba(' + rgb + ',' + (0.35 * f * f).toFixed(3) + ')'); c.addColorStop(1, 'rgba(' + rgb + ',0)');
+      ctx.fillStyle = c; ctx.fillRect(0, 0, st.w, st.h);
+    }
+    const T = ((now - st.t0) / 1000) % 2.6;
+    if (st.on && T < 0.85 && st.logo && st.logo.complete && st.logo.naturalWidth) {
+      this._sparkRect(st, cv.parentElement);
+      const oc = st.oc || (st.oc = document.createElement('canvas')), o = oc.getContext('2d');
+      oc.width = Math.max(1, Math.round(st.lw * st.dpr)); oc.height = Math.max(1, Math.round(st.lh * st.dpr));
+      o.setTransform(st.dpr, 0, 0, st.dpr, 0, 0);
+      o.globalCompositeOperation = 'source-over'; o.drawImage(st.logo, 0, 0, st.lw, st.lh);
+      o.globalCompositeOperation = 'source-in';
+      const bx = -st.lw * 0.5 + (T / 0.85) * st.lw * 2;
+      const gr = o.createLinearGradient(bx - st.lw * 0.22, 0, bx + st.lw * 0.22, st.lh * 0.5);
+      gr.addColorStop(0, 'rgba(255,255,255,0)'); gr.addColorStop(0.5, 'rgba(255,255,255,.9)'); gr.addColorStop(1, 'rgba(255,255,255,0)');
+      o.fillStyle = gr; o.fillRect(0, 0, st.lw, st.lh);
+      ctx.drawImage(oc, st.lx, st.ly, st.lw, st.lh);
+    }
+    const keep = [];
+    for (const p of st.parts) {
+      p.age += dt; if (p.age >= p.life) continue; keep.push(p);
+      if (p.kind === 2) {
+        p.vx += Math.sin(p.tw + p.age * 6) * 60 * dt; p.vx *= 1 - 1.2 * dt; p.vy -= 40 * dt;
+        p.x += p.vx * dt; p.y += p.vy * dt;
+        const k = p.age / p.life, fa = Math.pow(1 - k, 0.7) * Math.min(1, p.age * 12) * (0.7 + 0.3 * Math.sin(p.tw * 3 + p.age * 30));
+        const spr = this._fireSprites(), s = p.size * 4;
+        ctx.globalAlpha = Math.max(0, Math.min(1, fa)); ctx.drawImage(spr[Math.max(0, Math.min(15, Math.floor(k * 16)))], p.x - s, p.y - s, s * 2, s * 2); ctx.globalAlpha = 1;
+        continue;
+      }
+      p.vx *= 1 - 1.8 * dt; p.vy = p.vy * (1 - 1.3 * dt) - (p.kind ? 0 : 10 * dt);
+      p.x += p.vx * dt; p.y += p.vy * dt;
+      const env = Math.sin(Math.PI * (p.age / p.life)), a = env * (0.55 + 0.45 * Math.sin(p.tw + p.age * 20));
+      if (a <= 0.01) continue;
+      const col = p.white ? '255,255,255' : rgb;
+      if (p.kind) {
+        const s = Math.max(0.5, p.size * (0.35 + 0.65 * env));
+        ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.rot + p.age * 0.9);
+        const g = ctx.createRadialGradient(0, 0, 0, 0, 0, s);
+        g.addColorStop(0, 'rgba(' + rgb + ',' + (0.6 * a).toFixed(3) + ')'); g.addColorStop(1, 'rgba(' + rgb + ',0)');
+        ctx.fillStyle = g; ctx.beginPath(); ctx.arc(0, 0, s, 0, 6.2832); ctx.fill();
+        ctx.fillStyle = 'rgba(' + col + ',' + a.toFixed(3) + ')';
+        ctx.beginPath(); ctx.moveTo(0, -s); ctx.quadraticCurveTo(0, 0, s, 0); ctx.quadraticCurveTo(0, 0, 0, s); ctx.quadraticCurveTo(0, 0, -s, 0); ctx.quadraticCurveTo(0, 0, 0, -s); ctx.fill();
+        ctx.restore();
+      } else {
+        ctx.fillStyle = 'rgba(' + col + ',' + a.toFixed(3) + ')';
+        ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, 6.2832); ctx.fill();
+      }
+    }
+    st.parts = keep;
+    if (st.on || keep.length || st.flash > 0 || (st.heat || 0) > 0.01) st.raf = requestAnimationFrame((t) => this._sparkTick(cv, t));
+    else { st.raf = 0; ctx.clearRect(0, 0, st.w, st.h); }
+  }
+
   btnIn = (e) => {
     e.currentTarget.querySelectorAll('[data-on]').forEach((n) => {
       if (n._base == null) n._base = n.style.cssText;
@@ -711,11 +859,13 @@ class Component extends DCLogic {
       frameCut: !narrow && f === 'cut',
       frameGraphite: !narrow && f === 'graphite',
       bullRef: this.bullRef,
+      cardIn: this.cardIn,
+      cardOut: this.cardOut,
       heroDevice: heroVisual === 'device',
       heroGem: heroVisual === 'gem',
       heroShards: heroVisual === 'shards',
       shardsRef: this.shardsRef,
-      portfolio: this.portfolio.map((p) => ({ ...p, rgb: (this.props.tileLight ?? 'brand') === 'emerald' ? 'rgb(0,179,132)' : p.brand })),
+      portfolio: this.portfolio.map((p) => ({ ...p, fx: p.fx || 'spark', rgb: (this.props.tileLight ?? 'brand') === 'emerald' ? 'rgb(0,179,132)' : p.brand })),
       bgLight: !['facet', 'tone'].includes(this.props.tileBg),
       bgFacet: this.props.tileBg === 'facet',
       bgTone: this.props.tileBg === 'tone',
