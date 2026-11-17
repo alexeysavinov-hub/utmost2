@@ -33,6 +33,11 @@ input,textarea,button{font:inherit;color:inherit}
 @keyframes hm-glint{0%{transform:translateX(-160%) skewX(-16deg);opacity:0}6%{opacity:1}24%{transform:translateX(260%) skewX(-16deg);opacity:0}100%{transform:translateX(260%) skewX(-16deg);opacity:0}}
 @keyframes hm-line{from{transform:translateY(110%)}to{transform:none}}
 @keyframes hm-fade{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes hm-slices-in{from{opacity:0;transform:scale(1.08)}to{opacity:1;transform:none}}
+@keyframes hm-drift-a{from{transform:translate(-50%,-50%) skewX(14deg) scale(1.1) translateY(-2.5%)}to{transform:translate(-50%,-50%) skewX(14deg) scale(1.1) translateY(2.5%)}}
+@keyframes hm-drift-b{from{transform:translate(-50%,-50%) skewX(14deg) scale(1.1) translateY(2.5%)}to{transform:translate(-50%,-50%) skewX(14deg) scale(1.1) translateY(-2.5%)}}
+@keyframes hm-drift-c{from{transform:translate(-50%,-50%) skewX(14deg) translateY(2.5%)}to{transform:translate(-50%,-50%) skewX(14deg) translateY(-2.5%)}}
+@keyframes hm-sweep{0%{transform:translateX(190%)}26%,100%{transform:translateX(860%)}}
 @media (prefers-reduced-motion: reduce){*{transition:none !important;animation:none !important}}
 input::placeholder,textarea::placeholder{color:#6F7975;opacity:1}
 summary{list-style:none}
@@ -92,7 +97,7 @@ body{padding:0 clamp(20px,3.4vw,56px)}
 </sc-if>
 
 <section id="top" data-screen-label="Hero" style="position:relative;min-height:min(100svh,920px);display:flex;align-items:center;overflow:hidden;margin-top:-72px;padding-top:72px;background:#0B0E0D">
-  <sc-if value="{{ heroDevice }}" hint-placeholder-val="{{ true }}">
+  <sc-if value="{{ heroDevice }}" hint-placeholder-val="{{ false }}">
     <img src="assets/concepts/device-hero-ludus-hq5.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:66% 50%;animation:hm-reveal 2.8s cubic-bezier(.22,.61,.36,1) both,hm-push 30s 2.8s ease-in-out infinite alternate">
     <div aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;animation:hm-reveal 2.8s cubic-bezier(.22,.61,.36,1) both,hm-push 30s 2.8s ease-in-out infinite alternate">
       <div ref="{{ bullRef }}" style="position:absolute;left:0;top:0;width:0;height:0">
@@ -110,13 +115,35 @@ body{padding:0 clamp(20px,3.4vw,56px)}
   <sc-if value="{{ heroShards }}" hint-placeholder-val="{{ false }}">
     <img ref="{{ shardsRef }}" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:74% 50%;animation:hm-reveal 2.8s cubic-bezier(.22,.61,.36,1) both,hm-push 30s 2.8s ease-in-out infinite alternate">
   </sc-if>
+  <sc-if value="{{ heroSlices }}" hint-placeholder-val="{{ true }}">
+    <div aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;animation:hm-slices-in 2.4s cubic-bezier(.22,.61,.36,1) both">
+      <div style="position:absolute;left:min(-9%,-130px);top:-8.75%;width:max(128.5%,1100px);height:117.5%;display:flex;gap:10px;transform:skewX(-14deg)">
+        <div style="position:relative;flex:1 1 0;min-width:0;overflow:hidden;background:#111514"><img src="assets/hero/card-dreadmoor.jpg" alt="" style="position:absolute;left:50%;top:50%;height:105%;width:auto;aspect-ratio:2 / 3;max-width:none;object-fit:cover;transform:translate(-50%,-50%) skewX(14deg) scale(1.1);animation:hm-drift-a 18s ease-in-out infinite alternate"></div>
+        <div style="position:relative;flex:1 1 0;min-width:0;overflow:hidden;background:#111514"><img src="assets/hero/card-batgirl.jpg" alt="" style="position:absolute;left:50%;top:50%;height:105%;width:auto;aspect-ratio:2 / 3;max-width:none;object-fit:cover;transform:translate(-50%,-50%) skewX(14deg) scale(1.1);animation:hm-drift-b 20s ease-in-out infinite alternate"></div>
+        <div style="position:relative;flex:1 1 0;min-width:0;overflow:hidden;background:#111514"><img src="assets/hero/card-plague.jpg" alt="" style="position:absolute;left:50%;top:50%;height:105%;width:auto;aspect-ratio:2 / 3;max-width:none;object-fit:cover;transform:translate(-50%,-50%) skewX(14deg) scale(1.1);animation:hm-drift-a 22s ease-in-out infinite alternate"></div>
+        <div style="position:relative;flex:1 1 0;min-width:0;overflow:hidden;background:#111514"><img src="assets/hero/card-dreadmoor-bow-hq.jpg" alt="" style="position:absolute;left:50%;top:50%;height:105%;width:auto;aspect-ratio:2 / 3;max-width:none;object-fit:cover;transform:translate(-50%,-50%) skewX(14deg);animation:hm-drift-c 18s ease-in-out infinite alternate"></div>
+        <div style="position:relative;flex:1 1 0;min-width:0;overflow:hidden;background:#111514"><img src="assets/hero/card-bull.jpg" alt="" style="position:absolute;left:50%;top:50%;height:105%;width:auto;aspect-ratio:2 / 3;max-width:none;object-fit:cover;transform:translate(-50%,-50%) skewX(14deg) scale(1.1);animation:hm-drift-a 20s ease-in-out infinite alternate"></div>
+        <div style="position:relative;flex:1 1 0;min-width:0;overflow:hidden;background:#111514"><img src="assets/hero/card-tiny-eden.jpg" alt="" style="position:absolute;left:50%;top:50%;height:105%;width:auto;aspect-ratio:2 / 3;max-width:none;object-fit:cover;transform:translate(-50%,-50%) skewX(14deg) scale(1.1);animation:hm-drift-b 22s ease-in-out infinite alternate"></div>
+        <div style="position:relative;flex:1 1 0;min-width:0;overflow:hidden;background:#111514"><img src="assets/hero/card-warcrow-b.jpg" alt="" style="position:absolute;left:50%;top:50%;height:105%;width:auto;aspect-ratio:2 / 3;max-width:none;object-fit:cover;transform:translate(-50%,-50%) skewX(14deg) scale(1.1);animation:hm-drift-a 18s ease-in-out infinite alternate"></div>
+        <div style="position:absolute;top:0;bottom:0;left:0;width:12%;background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.6),rgba(255,255,255,0));mix-blend-mode:overlay;transform:translateX(190%);animation:hm-sweep 9s 2s cubic-bezier(.45,0,.2,1) infinite"></div>
+      </div>
+    </div>
+  </sc-if>
   <div aria-hidden="true" style="position:absolute;inset:0;background:radial-gradient(55% 75% at 92% 0%,rgba(0,179,132,.34),rgba(0,179,132,0) 70%);mix-blend-mode:screen;pointer-events:none;animation:hm-beam-in 2.4s .9s ease both,hm-beam 8s 3.3s ease-in-out infinite"></div>
+  <sc-if value="{{ heroFx }}" hint-placeholder-val="{{ false }}">
   <div aria-hidden="true" style="position:absolute;left:55%;top:8%;width:40%;height:66%;overflow:hidden;mix-blend-mode:screen;pointer-events:none;-webkit-mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 45%,transparent 100%);mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 45%,transparent 100%)">
     <div style="position:absolute;top:-20%;bottom:-20%;left:0;width:26%;opacity:0;background:linear-gradient(90deg,rgba(200,255,230,0),rgba(200,255,230,.07),rgba(200,255,230,0));animation:hm-glint 12s 3.4s cubic-bezier(.45,0,.2,1) infinite both"></div>
   </div>
   <canvas data-hero-dust="" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;mix-blend-mode:screen;animation:hm-in 2.2s 1.6s ease both"></canvas>
   <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(11,14,13,.96) 0%,rgba(11,14,13,.72) 38%,rgba(11,14,13,.18) 72%,rgba(11,14,13,0) 100%)"></div>
   <div style="position:absolute;left:0;right:0;bottom:0;height:42%;background:linear-gradient(180deg,rgba(11,14,13,0),#0B0E0D)"></div>
+  </sc-if>
+  <sc-if value="{{ slicesWide }}" hint-placeholder-val="{{ true }}">
+    <div aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(11,14,13,.985) 0,rgba(11,14,13,.97) calc(50% - 150px),rgba(11,14,13,.72) calc(50% + 10px),rgba(11,14,13,.14) calc(50% + 225px),rgba(11,14,13,0) calc(50% + 370px)),linear-gradient(180deg,rgba(11,14,13,.94) 0,rgba(11,14,13,.62) 72px,rgba(11,14,13,0) 160px,rgba(11,14,13,0) 76%,#0B0E0D 100%)"></div>
+  </sc-if>
+  <sc-if value="{{ slicesNarrow }}" hint-placeholder-val="{{ false }}">
+    <div aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(11,14,13,.55) 0,rgba(11,14,13,.1) 88px,rgba(11,14,13,.25) calc(50% - 250px),rgba(11,14,13,.84) calc(50% - 150px),rgba(11,14,13,.94) calc(50% - 40px),#0B0E0D 100%)"></div>
+  </sc-if>
   <div style="position:relative;width:100%;max-width:1440px;margin:0 auto;padding:clamp(40px,6vh,80px) clamp(24px,6vw,96px) clamp(88px,14vh,160px)">
     <h1 style="margin:0;font-family:'Archivo','Geist',sans-serif;font-stretch:125%;font-size:clamp(min(37px,10vw),5.5vw,84px);font-weight:600;letter-spacing:-.035em;line-height:.98">
       <span style="display:block;overflow:hidden;padding-bottom:.12em;margin-bottom:-.12em"><span style="display:block;white-space:nowrap;animation:hm-line 1.5s 1.1s cubic-bezier(.16,1,.3,1) both">We seek</span></span>
@@ -223,7 +250,7 @@ body{padding:0 clamp(20px,3.4vw,56px)}
         <div style="position:absolute;left:28px;right:28px;bottom:28px;display:grid;gap:12px"><div style="display:flex;gap:12px;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.1em"><span style="color:#00B384">01</span><span style="color:#F2F4F3">SEEK</span></div><p style="margin:0;font-size:15px;line-height:1.55;color:#A7AFAB;text-wrap:pretty">Finding the finest gaming gems: innovative projects worldwide, backed by strategic investment.</p></div>
       </div>
       <div data-reveal="120" style="position:relative;height:clamp(260px,26vw,340px);overflow:hidden;clip-path:polygon(24px 0,100% 0,100% calc(100% - 24px),calc(100% - 24px) 100%,0 100%,0 24px);background:#0F1312">
-        <div style="position:absolute;inset:0;background:url('assets/concepts/device-craft-dreadmoor.jpg') 50% 25% / cover;filter:saturate(1) brightness(1.08)"></div>
+        <div style="position:absolute;inset:0;background:url('assets/concepts/device-craft-dreadmoor-launch.jpg') 50% 25% / cover;filter:saturate(1) brightness(1.08)"></div>
         <div style="position:absolute;inset:0;background:linear-gradient(to top,#0B0E0D 28%,rgba(11,14,13,.55) 50%,rgba(11,14,13,0) 74%,rgba(11,14,13,.2))"></div>
         <span style="position:absolute;top:33px;left:28px;display:flex;gap:4px"><span style="width:14px;height:2px;background:#00B384"></span><span style="width:14px;height:2px;background:#00B384"></span><span style="width:14px;height:2px;background:rgba(255,255,255,.2)"></span></span>
         <span style="position:absolute;top:26px;right:28px;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.1em;color:#A7AFAB">BUILD</span>
@@ -231,7 +258,7 @@ body{padding:0 clamp(20px,3.4vw,56px)}
       </div>
       <div data-reveal="240" style="position:relative;height:clamp(260px,26vw,340px);padding:1px;clip-path:polygon(24px 0,100% 0,100% calc(100% - 24px),calc(100% - 24px) 100%,0 100%,0 24px);background:linear-gradient(160deg,rgba(0,179,132,.9),rgba(0,179,132,.15) 60%)">
         <div style="position:relative;width:100%;height:100%;overflow:hidden;clip-path:polygon(23.6px 0,100% 0,100% calc(100% - 23.6px),calc(100% - 23.6px) 100%,0 100%,0 23.6px);background:#0F1312">
-          <div style="position:absolute;inset:0;background:url('assets/concepts/device-cultivate-collage.jpg') 50% 25% / cover;filter:saturate(1.1) brightness(1.1)"></div>
+          <div style="position:absolute;inset:0;background:url('assets/concepts/device-cultivate-collage-te.jpg') 50% 25% / cover;filter:saturate(1.1) brightness(1.1)"></div>
           <div style="position:absolute;inset:0;background:linear-gradient(to top,#0B0E0D 28%,rgba(11,14,13,.55) 50%,rgba(11,14,13,0) 74%,rgba(11,14,13,.2))"></div>
           <span style="position:absolute;top:32px;left:27px;display:flex;gap:4px"><span style="width:14px;height:2px;background:#00B384"></span><span style="width:14px;height:2px;background:#00B384"></span><span style="width:14px;height:2px;background:#00B384;box-shadow:0 0 10px rgba(0,179,132,.8)"></span></span>
           <span style="position:absolute;top:25px;right:27px;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.1em;color:#00B384">LAUNCH</span>
@@ -390,7 +417,7 @@ body{padding:0 clamp(20px,3.4vw,56px)}
 </footer>
 <dc-import name="CookieBanner" hint-size="0px,0px"></dc-import>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;heroVisual&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;device&quot;,&quot;options&quot;:[&quot;device&quot;,&quot;gem&quot;,&quot;shards&quot;],&quot;tsType&quot;:&quot;'gem' | 'shards'&quot;,&quot;section&quot;:&quot;Hero&quot;},&quot;frame&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;glow&quot;,&quot;options&quot;:[&quot;line&quot;,&quot;glow&quot;,&quot;ruler&quot;,&quot;progress&quot;,&quot;cut&quot;,&quot;graphite&quot;],&quot;tsType&quot;:&quot;'line' | 'glow' | 'ruler' | 'progress' | 'cut' | 'graphite'&quot;},&quot;tileBg&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;light&quot;,&quot;options&quot;:[&quot;light&quot;,&quot;facet&quot;,&quot;tone&quot;],&quot;tsType&quot;:&quot;'light' | 'facet' | 'tone'&quot;,&quot;section&quot;:&quot;Portfolio&quot;},&quot;tileLight&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;brand&quot;,&quot;options&quot;:[&quot;brand&quot;,&quot;emerald&quot;],&quot;tsType&quot;:&quot;'brand' | 'emerald'&quot;,&quot;section&quot;:&quot;Portfolio&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;heroVisual&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;slices&quot;,&quot;options&quot;:[&quot;slices&quot;,&quot;device&quot;,&quot;gem&quot;,&quot;shards&quot;],&quot;tsType&quot;:&quot;'slices' | 'device' | 'gem' | 'shards'&quot;,&quot;section&quot;:&quot;Hero&quot;},&quot;frame&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;glow&quot;,&quot;options&quot;:[&quot;line&quot;,&quot;glow&quot;,&quot;ruler&quot;,&quot;progress&quot;,&quot;cut&quot;,&quot;graphite&quot;],&quot;tsType&quot;:&quot;'line' | 'glow' | 'ruler' | 'progress' | 'cut' | 'graphite'&quot;},&quot;tileBg&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;light&quot;,&quot;options&quot;:[&quot;light&quot;,&quot;facet&quot;,&quot;tone&quot;],&quot;tsType&quot;:&quot;'light' | 'facet' | 'tone'&quot;,&quot;section&quot;:&quot;Portfolio&quot;},&quot;tileLight&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;brand&quot;,&quot;options&quot;:[&quot;brand&quot;,&quot;emerald&quot;],&quot;tsType&quot;:&quot;'brand' | 'emerald'&quot;,&quot;section&quot;:&quot;Portfolio&quot;}}">
 class Component extends DCLogic {
   shardsRef = (el) => { if (el && !el.getAttribute('src')) el.src = 'assets/hero-shards.jpg'; };
 
@@ -484,6 +511,14 @@ class Component extends DCLogic {
     };
   }
 
+  _syncDust() {
+    const cv = document.querySelector('canvas[data-hero-dust]');
+    if (cv === (this._dustCv || null)) return;
+    if (this._dustOff) { this._dustOff(); this._dustOff = null; }
+    this._dustCv = cv;
+    if (cv) this._initDust();
+  }
+
   _initDust() {
     const cv = document.querySelector('canvas[data-hero-dust]');
     if (!cv) return;
@@ -572,14 +607,14 @@ class Component extends DCLogic {
     this._frameOff = () => { window.removeEventListener('scroll', onScroll); window.removeEventListener('resize', onScroll); cancelAnimationFrame(fRaf); };
   }
 
-  componentDidUpdate() { if (this._frameUpdate) this._frameUpdate(); document.body.style.overflow = this.state.narrow && this.state.menuOpen ? 'hidden' : ''; }
+  componentDidUpdate() { if (this._frameUpdate) this._frameUpdate(); document.body.style.overflow = this.state.narrow && this.state.menuOpen ? 'hidden' : ''; this._syncDust(); }
 
   componentDidMount() { this._lgT = setTimeout(() => this.logoGlint(), 900); this._navInit();
     this._initFrame();
     document.addEventListener('error', this._onImgError, true);
     if (location.hash.length > 1) setTimeout(() => { const el = document.getElementById(location.hash.slice(1)); if (el) window.scrollTo(0, el.getBoundingClientRect().top + window.scrollY - 72 - (parseFloat(getComputedStyle(document.body).paddingTop) || 0)); }, 120);
     this._initMission();
-    this._initDust();
+    this._syncDust();
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     const els = Array.from(document.querySelectorAll('[data-reveal]'));
     const ease = 'cubic-bezier(.16,1,.3,1)';
@@ -606,11 +641,13 @@ class Component extends DCLogic {
     if (!window.matchMedia) return;
     const mq = window.matchMedia('(max-width: 719px)');
     const onMq = () => this.setState({ narrow: mq.matches, menuOpen: false });
+    const onResize = () => { if (mq.matches !== this.state.narrow) onMq(); };
     const onKey = (e) => { if (e.key === 'Escape' && this.state.menuOpen) this.setState({ menuOpen: false }); };
     mq.addEventListener('change', onMq);
+    window.addEventListener('resize', onResize);
     document.addEventListener('keydown', onKey);
     if (mq.matches !== this.state.narrow) onMq();
-    this._navOff = () => { mq.removeEventListener('change', onMq); document.removeEventListener('keydown', onKey); document.body.style.overflow = ''; };
+    this._navOff = () => { mq.removeEventListener('change', onMq); window.removeEventListener('resize', onResize); document.removeEventListener('keydown', onKey); document.body.style.overflow = ''; };
   }
 
   toggleMenu = () => this.setState((s) => ({ menuOpen: !s.menuOpen }));
@@ -834,7 +871,7 @@ class Component extends DCLogic {
   };
 
   renderVals() {
-    const heroVisual = this.props.heroVisual ?? 'device';
+    const heroVisual = this.props.heroVisual ?? 'slices';
     const narrow = this.state.narrow;
     const open = narrow && this.state.menuOpen;
     const topic = this.state.topic;
@@ -856,6 +893,10 @@ class Component extends DCLogic {
       bullRef: this.bullRef,
       cardIn: this.cardIn,
       cardOut: this.cardOut,
+      heroSlices: heroVisual === 'slices',
+      heroFx: heroVisual !== 'slices',
+      slicesWide: heroVisual === 'slices' && !narrow,
+      slicesNarrow: heroVisual === 'slices' && narrow,
       heroDevice: heroVisual === 'device',
       heroGem: heroVisual === 'gem',
       heroShards: heroVisual === 'shards',
