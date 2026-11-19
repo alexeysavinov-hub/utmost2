@@ -180,11 +180,11 @@ body{padding:0 clamp(20px,3.4vw,56px)}
               <span aria-hidden="true" style="position:absolute;inset:0;background:radial-gradient(38% 34% at 50% 54%,currentColor,transparent 100%);opacity:.24"></span>
               <img src="{{ p.logo }}" alt="{{ p.name }}" loading="lazy" data-logo="" style="position:absolute;left:50%;top:54%;width:{{ p.logoW }};height:auto;transform:translate(-50%,-50%);filter:drop-shadow(0 12px 28px rgba(0,0,0,.55))">
             </div>
-            <div style="min-width:0;display:flex;flex-direction:column;gap:20px;padding:clamp(20px,2vw,28px)">
+            <div style="position:relative;min-width:0;display:flex;flex-direction:column;gap:20px;padding:clamp(20px,2vw,28px);text-align:center">
               <div style="display:grid;gap:6px">
-                <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px">
-                  <h3 style="margin:0;font-size:clamp(22px,1.9vw,26px);font-weight:500;letter-spacing:-.02em;line-height:1.15">{{ p.name }}</h3>
-                  <span aria-hidden="true" data-on="transform:translate(3px,-3px);color:#00B384" style="flex:0 0 auto;color:#A7AFAB;transition:transform .4s cubic-bezier(.16,1,.3,1),color .3s">↗</span>
+                <div style="display:flex;justify-content:center;padding:0 24px">
+                  <h3 style="margin:0;font-size:clamp(22px,1.9vw,26px);font-weight:500;letter-spacing:-.02em;line-height:1.15;text-wrap:balance">{{ p.name }}</h3>
+                  <span aria-hidden="true" data-on="transform:translate(3px,-3px);color:#00B384" style="position:absolute;top:calc(clamp(20px,2vw,28px) + 4px);right:clamp(20px,2vw,28px);color:#A7AFAB;transition:transform .4s cubic-bezier(.16,1,.3,1),color .3s">↗</span>
                 </div>
                 <span style="font-size:14px;line-height:1.5;color:#A7AFAB">{{ p.subtitle }}</span>
               </div>
@@ -224,7 +224,7 @@ body{padding:0 clamp(20px,3.4vw,56px)}
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));row-gap:32px;margin-top:clamp(4px,1vw,12px)">
       <div data-reveal="0" style="padding:18px clamp(20px,3vw,40px) 0 0;display:grid;gap:12px;align-content:start;min-width:0;border-top:1px solid rgba(255,255,255,.14)">
         <div style="display:grid;gap:4px"><span style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.1em;color:#6F7975">HQ</span><span style="font-size:15px;line-height:1.5;color:#E4E8E6">Nicosia, Cyprus</span></div>
-        <div style="display:grid;gap:4px"><span style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.1em;color:#6F7975">PORTFOLIO</span><span style="font-size:15px;line-height:1.5;color:#E4E8E6">Mamboo Games, Top App Games, Digital Vortex</span></div>
+        <div style="display:grid;gap:4px"><span style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.1em;color:#6F7975">PORTFOLIO</span><span style="font-size:15px;line-height:1.5;color:#E4E8E6">Mamboo, Top App Games, Digital Vortex Entertainment</span></div>
         <div style="display:grid;gap:4px"><span style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.1em;color:#6F7975">FOCUS</span><span style="font-size:15px;line-height:1.5;color:#E4E8E6">Studios and publishers worldwide</span></div>
       </div>
       <div data-reveal="120" style="padding-right:clamp(20px,3vw,40px);display:grid;gap:14px;align-content:start;min-width:0">
@@ -258,7 +258,29 @@ body{padding:0 clamp(20px,3.4vw,56px)}
       </div>
       <div data-reveal="240" style="position:relative;height:clamp(260px,26vw,340px);padding:1px;clip-path:polygon(24px 0,100% 0,100% calc(100% - 24px),calc(100% - 24px) 100%,0 100%,0 24px);background:linear-gradient(160deg,rgba(0,179,132,.9),rgba(0,179,132,.15) 60%)">
         <div style="position:relative;width:100%;height:100%;overflow:hidden;clip-path:polygon(23.6px 0,100% 0,100% calc(100% - 23.6px),calc(100% - 23.6px) 100%,0 100%,0 23.6px);background:#0F1312">
-          <div style="position:absolute;inset:0;background:url('assets/concepts/device-cultivate-collage-te.jpg') 50% 25% / cover;filter:saturate(1.1) brightness(1.1)"></div>
+          <div style="position:absolute;inset:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px;background:#0B0E0D">
+            <div style="position:relative;overflow:hidden;background:url('assets/hero/card-tiny-eden.jpg') 50% 35% / cover">
+              <div style="position:absolute;inset:0;background:linear-gradient(rgba(11,14,13,.9),rgba(11,14,13,.55) 32%,rgba(11,14,13,0) 52%)"></div>
+              <div style="position:absolute;left:0;right:0;top:60px;display:flex;flex-direction:column;align-items:center;gap:8px;color:#F2F4F3">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="3" rx="2"></rect><path d="M8 21h8"></path><path d="M12 17v4"></path></svg>
+                <span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.14em">PC</span>
+              </div>
+            </div>
+            <div style="position:relative;overflow:hidden;background:url('assets/hero/card-dreadmoor.jpg') 50% 40% / cover">
+              <div style="position:absolute;inset:0;background:linear-gradient(rgba(11,14,13,.9),rgba(11,14,13,.55) 32%,rgba(11,14,13,0) 52%)"></div>
+              <div style="position:absolute;left:0;right:0;top:60px;display:flex;flex-direction:column;align-items:center;gap:8px;color:#F2F4F3">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="6" x2="10" y1="11" y2="11"></line><line x1="8" x2="8" y1="9" y2="13"></line><line x1="15" x2="15.01" y1="12" y2="12"></line><line x1="18" x2="18.01" y1="10" y2="10"></line><path d="M17.32 5H6.68a4 4 0 0 0-3.978 3.59c-.006.052-.01.101-.017.152C2.604 9.416 2 14.456 2 16a3 3 0 0 0 3 3c1 0 1.5-.5 2-1l1.414-1.414A2 2 0 0 1 9.828 16h4.344a2 2 0 0 1 1.414.586L17 18c.5.5 1 1 2 1a3 3 0 0 0 3-3c0-1.545-.604-6.584-.685-7.258-.007-.05-.011-.1-.017-.151A4 4 0 0 0 17.32 5z"></path></svg>
+                <span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.14em">CONSOLE</span>
+              </div>
+            </div>
+            <div style="position:relative;overflow:hidden;background:url('assets/hero/card-ludus-poster.jpg') 50% 20% / cover">
+              <div style="position:absolute;inset:0;background:linear-gradient(rgba(11,14,13,.9),rgba(11,14,13,.55) 32%,rgba(11,14,13,0) 52%)"></div>
+              <div style="position:absolute;left:0;right:0;top:60px;display:flex;flex-direction:column;align-items:center;gap:8px;color:#F2F4F3">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"></rect><path d="M12 18h.01"></path></svg>
+                <span style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.14em">MOBILE</span>
+              </div>
+            </div>
+          </div>
           <div style="position:absolute;inset:0;background:linear-gradient(to top,#0B0E0D 28%,rgba(11,14,13,.55) 50%,rgba(11,14,13,0) 74%,rgba(11,14,13,.2))"></div>
           <span style="position:absolute;top:32px;left:27px;display:flex;gap:4px"><span style="width:14px;height:2px;background:#00B384"></span><span style="width:14px;height:2px;background:#00B384"></span><span style="width:14px;height:2px;background:#00B384;box-shadow:0 0 10px rgba(0,179,132,.8)"></span></span>
           <span style="position:absolute;top:25px;right:27px;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.1em;color:#00B384">LAUNCH</span>
@@ -445,7 +467,7 @@ class Component extends DCLogic {
   placeholders = { general: 'Type your message here', pitch: 'Genre, platforms, stage and key metrics', partnership: 'Who you are and what you have in mind', press: 'Your outlet, topic and deadline' };
 
   news = [
-    { id: 'mamboo-55m', tag: 'MAMBOO GAMES', date: '29 Jan 2026', slug: 'mamboo-entertainment-surpasses-55-million-in-lifetime-revenue-and-confirms-sustained-profitability', fallback: 'assets/tile-mamboo.jpg',
+    { id: 'mamboo-55m', tag: 'MAMBOO', date: '29 Jan 2026', slug: 'mamboo-entertainment-surpasses-55-million-in-lifetime-revenue-and-confirms-sustained-profitability', fallback: 'assets/tile-mamboo.jpg',
       title: 'Mamboo Entertainment Surpasses $55 Million in Lifetime Revenue and Confirms Sustained Profitability',
       description: 'The global mobile publisher has remained profitable for three years with 20–35% year-over-year growth across revenue, profit and user base, growing through app store publishing, creative services and service revenue.' },
     { id: 'volkov', tag: 'TOP APP GAMES', date: '16 Oct 2025', slug: 'mma-star-alexander-volkov-joins-ludus-merge-arena-as-a-playable-character-ahead-of-ufc-321-bout', fallback: 'assets/tile-topapp.jpg',
@@ -457,7 +479,7 @@ class Component extends DCLogic {
     { id: 'warcrow', tag: 'TOP APP GAMES', date: '26 Sep 2025', slug: 'ludus-merge-arena-introduces-warcrow-heroes-in-crossover-event', fallback: 'assets/tile-warcrow.jpg',
       title: 'Ludus: Merge Arena Introduces Warcrow Heroes in Crossover Event',
       description: 'Two legendary heroes from the Warcrow universe by Corvus Belli join the Ludus roster in a limited-time Astral Rift event.' },
-    { id: 'mamboo-1b', tag: 'MAMBOO GAMES', date: '17 Jul 2025', slug: 'mamboo-entertainment-reaches-1-billion-mobile-game-installs-and-adds-towerlands-to-portfolio', fallback: 'assets/tile-towerlands.jpg',
+    { id: 'mamboo-1b', tag: 'MAMBOO', date: '17 Jul 2025', slug: 'mamboo-entertainment-reaches-1-billion-mobile-game-installs-and-adds-towerlands-to-portfolio', fallback: 'assets/tile-towerlands.jpg',
       title: 'Mamboo Entertainment Reaches 1 Billion of Mobile Game Installs and Adds TowerLands to the Portfolio',
       description: 'The publisher passes a billion installs worldwide and adds TowerLands, a midcore tower defense hit with over 10 million installs, to its publishing portfolio.' },
     { id: 'clan-wars', tag: 'TOP APP GAMES', date: '12 Mar 2025', slug: 'ludus-merge-arena-reaches-5-million-players-and-announces-clan-wars-major-update', fallback: 'assets/tile-ludus.jpg',
@@ -466,7 +488,7 @@ class Component extends DCLogic {
     { id: 'markov-ceo', tag: 'TOP APP GAMES', date: '10 Jul 2024', slug: 'mobile-studio-top-app-games-names-industry-veteran-vladimir-markov-as-new-ceo', fallback: 'assets/tile-topapp.jpg',
       title: 'Mobile Studio Top App Games Names Industry Veteran Vladimir Markov As New CEO',
       description: 'Top App Games, the studio behind Ludus: Merge Arena, appoints industry veteran Vladimir Markov as its new chief executive.' },
-    { id: 'digital-vortex', tag: 'DIGITAL VORTEX', date: '6 Jul 2024', slug: 'digital-vortex-entertainment-a-new-era-of-game-publishing', fallback: 'assets/tile-vortex.jpg',
+    { id: 'digital-vortex', tag: 'DIGITAL VORTEX ENTERTAINMENT', date: '6 Jul 2024', slug: 'digital-vortex-entertainment-a-new-era-of-game-publishing', fallback: 'assets/tile-vortex.jpg',
       title: 'Digital Vortex Entertainment: A New Era of Game Publishing',
       description: 'Digital Vortex launches as an independent publisher of PC and console games, led by CEO Alex Izotov and backed by Vladimir Nikolsky, with a tailored approach to every title.' },
   ];
@@ -474,9 +496,9 @@ class Component extends DCLogic {
   portfolio = [
     { delay: '0', tag: '01 · STUDIO', name: 'Top App Games', subtitle: 'Mobile game studio', domain: 'topapp.games', href: 'https://www.topapp.games/', logo: 'assets/logo/partners/topapp.png', logoW: '33%', brand: 'rgb(255,190,70)', fx: 'fire', glowDelay: '-2.7s',
       stats: [{ value: '12M+', label: 'PLAYERS' }, { value: 'Ludus', label: 'FLAGSHIP GAME' }] },
-    { delay: '100', tag: '02 · PUBLISHER', name: 'Digital Vortex', subtitle: 'Independent game publisher', domain: 'vortex.game', href: 'https://vortex.game/', logo: 'assets/logo/partners/vortex.png', logoW: '58%', brand: 'rgb(56,168,150)', glowDelay: '-5.3s',
+    { delay: '100', tag: '02 · PUBLISHER', name: 'Digital Vortex Entertainment', subtitle: 'Independent game publisher', domain: 'vortex.game', href: 'https://vortex.game/', logo: 'assets/logo/partners/vortex.png', logoW: '58%', brand: 'rgb(56,168,150)', glowDelay: '-5.3s',
       stats: [{ value: 'PC & console', label: 'PLATFORMS' }, { value: '2024', label: 'LAUNCHED' }] },
-    { delay: '200', tag: '03 · PUBLISHER', name: 'Mamboo Games', subtitle: 'Mobile game publisher', domain: 'ent.mamboo.games', href: 'https://ent.mamboo.games/', logo: 'assets/logo/partners/mamboo.png', logoW: '52%', brand: 'rgb(0,179,132)', glowDelay: '0s',
+    { delay: '200', tag: '03 · PUBLISHER', name: 'Mamboo', subtitle: 'Mobile game publisher', domain: 'ent.mamboo.games', href: 'https://ent.mamboo.games/', logo: 'assets/logo/partners/mamboo.png', logoW: '52%', brand: 'rgb(0,179,132)', glowDelay: '0s',
       stats: [{ value: '1B+', label: 'INSTALLS' }, { value: '$55M+', label: 'LIFETIME REVENUE' }] },
   ];
 
